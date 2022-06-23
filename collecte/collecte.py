@@ -36,6 +36,8 @@ def subscribe(client: mqtt_client):
             row = d.split(',')
             writer.writerow(row)
             print(row)
+            l = row.split("=")
+
 
         file.close()
 
