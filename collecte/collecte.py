@@ -1,6 +1,5 @@
 import random
 import csv
-import pandas
 from paho.mqtt import client as mqtt_client
 
 
@@ -29,14 +28,21 @@ def connect_mqtt() -> mqtt_client:
 
 def subscribe(client: mqtt_client):
     def on_message(client, userdata, msg):
-        with open('test3.csv', 'a', encoding='utf-8', newline='') as file:
+        with open('dataa.csv', 'a', encoding='utf-8', newline='') as file:
             writer = csv.writer(file, delimiter=';')
             d = msg.payload.decode()
             print(d)
             row = d.split(',')
-            writer.writerow(row)
             print(row)
-            l = row.split("=")
+            r=[]
+            for j in row:
+                tst = j.split("=")
+                r.append(tst[1])
+            print(r)
+            writer.writerow(r)
+
+
+
 
 
         file.close()
